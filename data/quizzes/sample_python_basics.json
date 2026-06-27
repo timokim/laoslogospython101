@@ -1,0 +1,20 @@
+{
+  "title": "Python Basics — Sample",
+  "questions": [
+    {
+      "question_text": "What does this code print?\n\n```python\nprint(type([]))\n```",
+      "options": ["<class 'list'>", "<class 'dict'>", "<class 'tuple'>", "<class 'set'>"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "Which keyword defines a function in Python?",
+      "options": ["func", "def", "function", "fn"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the value of `len('hello')`?",
+      "options": ["4", "5", "6", "hello"],
+      "correct_index": 1
+    }
+  ]
+}
