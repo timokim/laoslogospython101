@@ -50,7 +50,10 @@ class Database(ABC):
     ) -> dict[str, Any]: ...
 
     @abstractmethod
-    def list_questions(self, quiz_id: str) -> list[dict[str, Any]]: ...
+    def list_questions(self, quiz_id: str, *, active_only: bool = False) -> list[dict[str, Any]]: ...
+
+    @abstractmethod
+    def set_question_enabled(self, question_id: str, enabled: bool) -> None: ...
 
     @abstractmethod
     def delete_question(self, question_id: str) -> None: ...
@@ -112,6 +115,7 @@ class LocalDatabase(Database):
                     question_text text not null,
                     options text not null,
                     correct_index integer not null,
+                    enabled integer not null default 1,
                     foreign key (quiz_id) references quizzes(id) on delete cascade
                 );
                 create table if not exists submissions (
@@ -139,6 +143,17 @@ class LocalDatabase(Database):
                 );
                 """
             )
+            try:
+                conn.execute(
+                    "alter table questions add column enabled integer not null default 1"
+                )
+            except sqlite3.OperationalError:
+                pass
+
+    def _normalize_question(self, q: dict[str, Any]) -> dict[str, Any]:
+        q["options"] = json.loads(q["options"]) if isinstance(q["options"], str) else q["options"]
+        q["enabled"] = bool(q.get("enabled", 1))
+        return q
 
     @property
     def backend_name(self) -> str:
@@ -181,8 +196,17 @@ class LocalDatabase(Database):
             quiz = dict(row)
             quiz["deployed"] = bool(quiz["deployed"])
             quiz["question_count"] = self._question_count(quiz["id"])
+            quiz["active_question_count"] = self._active_question_count(quiz["id"])
             result.append(quiz)
         return result
+
+    def _active_question_count(self, quiz_id: str) -> int:
+        with self._connect() as conn:
+            row = conn.execute(
+                "select count(*) as c from questions where quiz_id = ? and enabled = 1",
+                (quiz_id,),
+            ).fetchone()
+        return int(row["c"])
 
     def _question_count(self, quiz_id: str) -> int:
         with self._connect() as conn:
@@ -217,8 +241,8 @@ class LocalDatabase(Database):
         with self._connect() as conn:
             conn.execute(
                 """
-                insert into questions (id, quiz_id, sort_order, question_text, options, correct_index)
-                values (?, ?, ?, ?, ?, ?)
+                insert into questions (id, quiz_id, sort_order, question_text, options, correct_index, enabled)
+                values (?, ?, ?, ?, ?, ?, 1)
                 """,
                 (question_id, quiz_id, sort_order, question_text, json.dumps(options), correct_index),
             )
@@ -229,22 +253,23 @@ class LocalDatabase(Database):
             row = conn.execute("select * from questions where id = ?", (question_id,)).fetchone()
         if not row:
             return None
-        q = dict(row)
-        q["options"] = json.loads(q["options"])
-        return q
+        return self._normalize_question(dict(row))
 
-    def list_questions(self, quiz_id: str) -> list[dict[str, Any]]:
+    def list_questions(self, quiz_id: str, *, active_only: bool = False) -> list[dict[str, Any]]:
+        query = "select * from questions where quiz_id = ?"
+        if active_only:
+            query += " and enabled = 1"
+        query += " order by sort_order"
         with self._connect() as conn:
-            rows = conn.execute(
-                "select * from questions where quiz_id = ? order by sort_order",
-                (quiz_id,),
-            ).fetchall()
-        result = []
-        for row in rows:
-            q = dict(row)
-            q["options"] = json.loads(q["options"])
-            result.append(q)
-        return result
+            rows = conn.execute(query, (quiz_id,)).fetchall()
+        return [self._normalize_question(dict(row)) for row in rows]
+
+    def set_question_enabled(self, question_id: str, enabled: bool) -> None:
+        with self._connect() as conn:
+            conn.execute(
+                "update questions set enabled = ? where id = ?",
+                (1 if enabled else 0, question_id),
+            )
 
     def delete_question(self, question_id: str) -> None:
         with self._connect() as conn:
@@ -268,7 +293,14 @@ class LocalDatabase(Database):
         student_name: str,
         answers: dict[str, int],
     ) -> dict[str, Any]:
-        questions = self.list_questions(quiz_id)
+        questions = self.list_questions(quiz_id, active_only=True)
+        if not questions:
+            return {
+                "id": "",
+                "student_name": student_name.strip(),
+                "score": 0,
+                "total": 0,
+            }
         score = 0
         submission_id = str(uuid.uuid4())
         with self._connect() as conn:
@@ -387,6 +419,14 @@ class SupabaseDatabase(Database):
                 .execute()
             )
             quiz["question_count"] = count.count or 0
+            active = (
+                self.client.table("questions")
+                .select("id", count="exact")
+                .eq("quiz_id", quiz["id"])
+                .eq("enabled", True)
+                .execute()
+            )
+            quiz["active_question_count"] = active.count or 0
         return quizzes
 
     def set_quiz_deployed(self, quiz_id: str, deployed: bool) -> None:
@@ -417,6 +457,7 @@ class SupabaseDatabase(Database):
                     "question_text": question_text,
                     "options": options,
                     "correct_index": correct_index,
+                    "enabled": True,
                 }
             )
             .execute()
@@ -424,15 +465,22 @@ class SupabaseDatabase(Database):
         )
         return row
 
-    def list_questions(self, quiz_id: str) -> list[dict[str, Any]]:
-        return (
+    def list_questions(self, quiz_id: str, *, active_only: bool = False) -> list[dict[str, Any]]:
+        query = (
             self.client.table("questions")
             .select("*")
             .eq("quiz_id", quiz_id)
             .order("sort_order")
-            .execute()
-            .data
         )
+        if active_only:
+            query = query.eq("enabled", True)
+        rows = query.execute().data
+        for row in rows:
+            row["enabled"] = bool(row.get("enabled", True))
+        return rows
+
+    def set_question_enabled(self, question_id: str, enabled: bool) -> None:
+        self.client.table("questions").update({"enabled": enabled}).eq("id", question_id).execute()
 
     def delete_question(self, question_id: str) -> None:
         self.client.table("questions").delete().eq("id", question_id).execute()
@@ -454,7 +502,7 @@ class SupabaseDatabase(Database):
         student_name: str,
         answers: dict[str, int],
     ) -> dict[str, Any]:
-        questions = self.list_questions(quiz_id)
+        questions = self.list_questions(quiz_id, active_only=True)
         score = sum(
             1
             for q in questions

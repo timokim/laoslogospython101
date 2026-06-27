@@ -17,6 +17,7 @@ create table if not exists questions (
     question_text text not null,
     options jsonb not null,
     correct_index int not null,
+    enabled boolean not null default true,
     created_at timestamptz not null default now()
 );
 

@@ -5,6 +5,20 @@ import streamlit as st
 
 from lib.utils import get_db, render_markdown, require_instructor
 
+
+def _question_preview(text: str, limit: int = 55) -> str:
+    one_line = " ".join(text.split())
+    return one_line if len(one_line) <= limit else one_line[: limit - 3] + "..."
+
+
+def _toggle_question_enabled(
+    question_id: str, widget_key: str, manage_key: str | None = None
+) -> None:
+    if manage_key is not None:
+        st.session_state[manage_key] = True
+    get_db().set_question_enabled(question_id, st.session_state[widget_key])
+
+
 st.set_page_config(page_title="Instructor — Quizzes", page_icon="📝", layout="wide")
 
 if not require_instructor():
@@ -42,8 +56,10 @@ with tab_list:
                 c1, c2, c3 = st.columns([3, 1, 1])
                 with c1:
                     status = "🟢 Deployed" if quiz.get("deployed") else "⚪ Draft"
+                    total = quiz.get("question_count", 0)
+                    active = quiz.get("active_question_count", total)
                     st.markdown(f"**{quiz['title']}** — `{quiz['code']}` — {status}")
-                    st.caption(f"{quiz.get('question_count', 0)} questions")
+                    st.caption(f"{active} of {total} questions active")
                 with c2:
                     if quiz.get("deployed"):
                         if st.button("Undeploy", key=f"undep_{quiz['id']}"):
@@ -64,6 +80,43 @@ with tab_list:
                         f"Or open Take Quiz with: ?code={quiz['code']}",
                         language=None,
                     )
+                else:
+                    questions = db.list_questions(quiz["id"])
+                    manage_key = f"manage_open_{quiz['id']}"
+                    manage_label = f"Manage questions ({active} active)"
+
+                    if not st.session_state.get(manage_key, False):
+                        if st.button(manage_label, key=f"open_manage_{quiz['id']}"):
+                            st.session_state[manage_key] = True
+                            st.rerun()
+                    else:
+                        with st.container(border=True):
+                            head_col, close_col = st.columns([5, 1])
+                            with head_col:
+                                st.markdown(f"**{manage_label}**")
+                            with close_col:
+                                if st.button("Close", key=f"close_manage_{quiz['id']}"):
+                                    st.session_state[manage_key] = False
+                                    st.rerun()
+
+                            if not questions:
+                                st.caption(
+                                    "No questions yet. Add them in **Edit questions** or **Import from code**."
+                                )
+                            else:
+                                st.caption(
+                                    "Toggle off questions to exclude them when students take the quiz."
+                                )
+                                for i, q in enumerate(questions, start=1):
+                                    preview = _question_preview(q["question_text"])
+                                    widget_key = f"qen_{quiz['id']}_{q['id']}"
+                                    st.toggle(
+                                        f"Q{i}: {preview}",
+                                        value=q["enabled"],
+                                        key=widget_key,
+                                        on_change=_toggle_question_enabled,
+                                        args=(q["id"], widget_key, manage_key),
+                                    )
 
 with tab_edit:
     quizzes = db.list_quizzes()
@@ -107,6 +160,14 @@ with tab_edit:
                 for j, opt in enumerate(q["options"]):
                     marker = "✅" if j == q["correct_index"] else "○"
                     st.write(f"{marker} {opt}")
+                widget_key = f"qedit_{quiz_id}_{q['id']}"
+                st.toggle(
+                    "Active for students",
+                    value=q["enabled"],
+                    key=widget_key,
+                    on_change=_toggle_question_enabled,
+                    args=(q["id"], widget_key),
+                )
                 if st.button("Remove question", key=f"rmq_{q['id']}"):
                     db.delete_question(q["id"])
                     st.rerun()

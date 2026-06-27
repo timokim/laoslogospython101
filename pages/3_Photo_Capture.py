@@ -9,7 +9,7 @@ db = get_db()
 st.title("📸 Join the Directory")
 st.markdown(
     """
-**Computer majors, assemble!** Enter your name and take a photo to appear in the class directory.
+**Computer Science majors, assemble!** Enter your name and take a photo to appear in the class directory.
 
 Tip: On a phone, use the file picker — it usually opens your camera with better quality than the live preview.
 """

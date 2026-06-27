@@ -6,7 +6,7 @@ st.set_page_config(page_title="Student Directory", page_icon="👥", layout="wid
 
 db = get_db()
 
-st.title("👥 Computer Major Directory")
+st.title("👥 Computer Science Directory")
 st.caption("Everyone who joined via the Photo Capture page.")
 
 students = db.list_students()

@@ -20,9 +20,9 @@ if not quiz:
     st.warning("Quiz not found or not deployed yet. Check the code with your instructor.")
     st.stop()
 
-questions = db.list_questions(quiz["id"])
+questions = db.list_questions(quiz["id"], active_only=True)
 if not questions:
-    st.warning("This quiz has no questions yet.")
+    st.warning("This quiz has no active questions right now. Check with your instructor.")
     st.stop()
 
 if st.session_state.get("quiz_submitted"):

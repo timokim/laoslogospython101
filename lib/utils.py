@@ -3,9 +3,9 @@ from __future__ import annotations
 import io
 import secrets
 import string
-from typing import Any
 
 import streamlit as st
+from PIL import Image, ImageOps
 
 
 def get_instructor_pin() -> str:
@@ -37,9 +37,8 @@ def generate_quiz_code(length: int = 6) -> str:
 
 
 def compress_image(image_bytes: bytes, max_width: int = 800) -> bytes:
-    from PIL import Image
-
     img = Image.open(io.BytesIO(image_bytes))
+    img = ImageOps.exif_transpose(img)
     if img.mode in ("RGBA", "P"):
         img = img.convert("RGB")
 
