@@ -35,15 +35,18 @@ Open http://localhost:8501
 ## Supabase (production)
 
 1. Create a Supabase project (pick a region near your users, e.g. Singapore)
-2. Run `supabase/schema.sql` in the SQL editor
+2. Run **`supabase/schema.sql`** in the SQL editor (tables + row-level security policies)
 3. Create a Storage bucket named `student-photos` (public read recommended for directory)
-4. Add to `.streamlit/secrets.toml` (or Streamlit Cloud secrets):
+4. Run the **storage policy** section at the bottom of `schema.sql` again if the bucket was created after step 2
+5. Add to `.streamlit/secrets.toml` (or Streamlit Cloud secrets):
 
 ```toml
 supabase_url = "https://YOUR_PROJECT.supabase.co"
 supabase_key = "YOUR_ANON_KEY"
 instructor_pin = "your-secret-pin"
 ```
+
+**RLS error when creating a quiz?** Supabase blocks writes until policies exist. Run the “Row level security” section at the bottom of `supabase/schema.sql` in the SQL editor. Or use the `service_role` key instead of `anon` in Streamlit secrets (server-side only).
 
 ## Deploy to Streamlit Community Cloud
 

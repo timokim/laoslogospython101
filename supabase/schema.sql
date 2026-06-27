@@ -53,5 +53,54 @@ create table if not exists students (
 );
 
 -- Storage: create a public bucket named "student-photos" in the Supabase dashboard.
--- Policy suggestion (adjust for your auth needs):
---   allow public read, allow insert for anon (or service role from backend only)
+-- Then run the storage policies at the bottom of this file.
+
+-- ---------------------------------------------------------------------------
+-- Row level security (required when using the anon key from Streamlit)
+-- The instructor PIN lives in the app, not Supabase Auth, so these policies
+-- allow the anon role to read/write. Keep your supabase_key in Streamlit
+-- secrets only — never expose it in the browser or client-side code.
+-- Alternative: use the service_role key in secrets to bypass RLS entirely.
+-- ---------------------------------------------------------------------------
+
+alter table quizzes enable row level security;
+alter table questions enable row level security;
+alter table submissions enable row level security;
+alter table submission_answers enable row level security;
+alter table students enable row level security;
+
+drop policy if exists "Allow app access" on quizzes;
+create policy "Allow app access" on quizzes
+    for all to anon, authenticated
+    using (true) with check (true);
+
+drop policy if exists "Allow app access" on questions;
+create policy "Allow app access" on questions
+    for all to anon, authenticated
+    using (true) with check (true);
+
+drop policy if exists "Allow app access" on submissions;
+create policy "Allow app access" on submissions
+    for all to anon, authenticated
+    using (true) with check (true);
+
+drop policy if exists "Allow app access" on submission_answers;
+create policy "Allow app access" on submission_answers
+    for all to anon, authenticated
+    using (true) with check (true);
+
+drop policy if exists "Allow app access" on students;
+create policy "Allow app access" on students
+    for all to anon, authenticated
+    using (true) with check (true);
+
+-- Storage policies for bucket "student-photos" (create the bucket first in Dashboard)
+drop policy if exists "Allow public read student photos" on storage.objects;
+create policy "Allow public read student photos" on storage.objects
+    for select to anon, authenticated
+    using (bucket_id = 'student-photos');
+
+drop policy if exists "Allow app upload student photos" on storage.objects;
+create policy "Allow app upload student photos" on storage.objects
+    for insert to anon, authenticated
+    with check (bucket_id = 'student-photos');
