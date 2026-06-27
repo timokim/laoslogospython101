@@ -6,6 +6,10 @@ import streamlit as st
 from lib.utils import get_db, render_markdown, require_instructor
 
 
+def _is_enabled(question: dict) -> bool:
+    return bool(question.get("enabled", True))
+
+
 def _question_preview(text: str, limit: int = 55) -> str:
     one_line = " ".join(text.split())
     return one_line if len(one_line) <= limit else one_line[: limit - 3] + "..."
@@ -112,7 +116,7 @@ with tab_list:
                                     widget_key = f"qen_{quiz['id']}_{q['id']}"
                                     st.toggle(
                                         f"Q{i}: {preview}",
-                                        value=q["enabled"],
+                                        value=_is_enabled(q),
                                         key=widget_key,
                                         on_change=_toggle_question_enabled,
                                         args=(q["id"], widget_key, manage_key),
@@ -163,7 +167,7 @@ with tab_edit:
                 widget_key = f"qedit_{quiz_id}_{q['id']}"
                 st.toggle(
                     "Active for students",
-                    value=q["enabled"],
+                    value=_is_enabled(q),
                     key=widget_key,
                     on_change=_toggle_question_enabled,
                     args=(q["id"], widget_key),

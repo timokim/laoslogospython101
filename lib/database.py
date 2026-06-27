@@ -583,15 +583,21 @@ class SupabaseDatabase(Database):
             return None
 
 
-@st.cache_resource
-def get_database() -> Database:
-    try:
-        url = st.secrets.get("supabase_url", "")
-        key = st.secrets.get("supabase_key", "")
-    except Exception:
-        url = ""
-        key = ""
+def question_enabled(question: dict[str, Any]) -> bool:
+    return bool(question.get("enabled", True))
 
-    if url and key:
-        return SupabaseDatabase(url, key)
-    return LocalDatabase()
+
+def get_database() -> Database:
+    if "laos_database" not in st.session_state:
+        try:
+            url = st.secrets.get("supabase_url", "")
+            key = st.secrets.get("supabase_key", "")
+        except Exception:
+            url = ""
+            key = ""
+
+        if url and key:
+            st.session_state.laos_database = SupabaseDatabase(url, key)
+        else:
+            st.session_state.laos_database = LocalDatabase()
+    return st.session_state.laos_database
