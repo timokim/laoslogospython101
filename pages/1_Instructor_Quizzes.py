@@ -38,7 +38,7 @@ with tab_list:
     st.subheader("Prepared quizzes")
     quizzes = db.list_quizzes()
 
-    with st.form("create_quiz", clear_on_submit=True):
+    with st.form("create_quiz", clear_on_submit=False):
         title = st.text_input("New quiz title", placeholder="Python Module 1")
         if st.form_submit_button("Create quiz"):
             if title.strip():
@@ -127,7 +127,7 @@ with tab_edit:
         selected = st.selectbox("Select quiz to edit", list(quiz_options.keys()))
         quiz_id = quiz_options[selected]
 
-        with st.form("add_question", clear_on_submit=True):
+        with st.form("add_question", clear_on_submit=False):
             st.markdown("Add a question (markdown supported — use triple backticks for code)")
             question_text = st.text_area(
                 "Question",
