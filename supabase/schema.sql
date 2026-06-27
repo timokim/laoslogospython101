@@ -23,6 +23,9 @@ create table if not exists questions (
 
 create index if not exists idx_questions_quiz on questions(quiz_id);
 
+-- If you created the questions table before the enabled column existed, run:
+alter table questions add column if not exists enabled boolean not null default true;
+
 create table if not exists submissions (
     id uuid primary key default gen_random_uuid(),
     quiz_id uuid not null references quizzes(id) on delete cascade,

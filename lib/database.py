@@ -435,6 +435,11 @@ class SupabaseDatabase(Database):
     def delete_quiz(self, quiz_id: str) -> None:
         self.client.table("quizzes").delete().eq("id", quiz_id).execute()
 
+    def _normalize_question(self, row: dict[str, Any]) -> dict[str, Any]:
+        q = dict(row)
+        q["enabled"] = bool(q.get("enabled", True))
+        return q
+
     def add_question(
         self,
         quiz_id: str,
@@ -463,7 +468,7 @@ class SupabaseDatabase(Database):
             .execute()
             .data[0]
         )
-        return row
+        return self._normalize_question(row)
 
     def list_questions(self, quiz_id: str, *, active_only: bool = False) -> list[dict[str, Any]]:
         query = (
@@ -474,10 +479,8 @@ class SupabaseDatabase(Database):
         )
         if active_only:
             query = query.eq("enabled", True)
-        rows = query.execute().data
-        for row in rows:
-            row["enabled"] = bool(row.get("enabled", True))
-        return rows
+        rows = query.execute().data or []
+        return [self._normalize_question(row) for row in rows]
 
     def set_question_enabled(self, question_id: str, enabled: bool) -> None:
         self.client.table("questions").update({"enabled": enabled}).eq("id", question_id).execute()
