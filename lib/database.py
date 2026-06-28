@@ -79,6 +79,9 @@ class Database(ABC):
     def list_students(self) -> list[dict[str, Any]]: ...
 
     @abstractmethod
+    def delete_student(self, student_id: str) -> None: ...
+
+    @abstractmethod
     def get_photo_bytes(self, photo_path: str) -> bytes | None: ...
 
     @property
@@ -363,6 +366,17 @@ class LocalDatabase(Database):
             rows = conn.execute("select * from students order by name collate nocase").fetchall()
         return [dict(row) for row in rows]
 
+    def delete_student(self, student_id: str) -> None:
+        with self._connect() as conn:
+            row = conn.execute(
+                "select photo_path from students where id = ?", (student_id,)
+            ).fetchone()
+            conn.execute("delete from students where id = ?", (student_id,))
+        if row:
+            path = PHOTO_DIR / row["photo_path"]
+            if path.exists():
+                path.unlink()
+
     def get_photo_bytes(self, photo_path: str) -> bytes | None:
         path = PHOTO_DIR / photo_path
         if path.exists():
@@ -576,6 +590,21 @@ class SupabaseDatabase(Database):
             .data
         )
 
+    def delete_student(self, student_id: str) -> None:
+        rows = (
+            self.client.table("students")
+            .select("photo_path")
+            .eq("id", student_id)
+            .execute()
+            .data
+        )
+        if rows:
+            try:
+                self.client.storage.from_(self.BUCKET).remove([rows[0]["photo_path"]])
+            except Exception:
+                pass
+        self.client.table("students").delete().eq("id", student_id).execute()
+
     def get_photo_bytes(self, photo_path: str) -> bytes | None:
         try:
             return self.client.storage.from_(self.BUCKET).download(photo_path)
@@ -587,7 +616,15 @@ def question_enabled(question: dict[str, Any]) -> bool:
     return bool(question.get("enabled", True))
 
 
+# Bump when Database methods change so hot-reload picks up new code.
+_DB_CACHE_VERSION = 2
+
+
 def get_database() -> Database:
+    if st.session_state.get("_db_cache_version") != _DB_CACHE_VERSION:
+        st.session_state.pop("laos_database", None)
+        st.session_state["_db_cache_version"] = _DB_CACHE_VERSION
+
     if "laos_database" not in st.session_state:
         try:
             url = st.secrets.get("supabase_url", "")

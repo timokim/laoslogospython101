@@ -1,13 +1,21 @@
 import streamlit as st
 
-from lib.utils import get_db
+from lib.utils import get_db, require_instructor
 
 st.set_page_config(page_title="Student Directory", page_icon="👥", layout="wide")
 
 db = get_db()
 
-st.title("👥 Computer Science Directory")
+st.title("👥 Computer Science Summer Python Course Directory")
 st.caption("Everyone who joined via the Photo Capture page.")
+
+with st.expander("Remove entries (instructor only)"):
+    if st.session_state.get("instructor_authed"):
+        st.success("Unlocked — **Remove** buttons are shown on each student.")
+    else:
+        require_instructor()
+
+can_remove = st.session_state.get("instructor_authed", False)
 
 students = db.list_students()
 
@@ -29,3 +37,12 @@ for i in range(0, len(students), cols_per_row):
                 else:
                     st.warning("Photo unavailable")
                 st.markdown(f"**{student['name']}**")
+                if can_remove:
+                    if st.button(
+                        "Remove",
+                        key=f"remove_student_{student['id']}",
+                        type="secondary",
+                        use_container_width=True,
+                    ):
+                        db.delete_student(student["id"])
+                        st.rerun()
