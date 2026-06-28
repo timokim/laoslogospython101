@@ -1,0 +1,2 @@
+# pygame-ce provides wheels on newer Python; classic pygame also works on 3.11–3.12
+pygame-ce>=2.5.0

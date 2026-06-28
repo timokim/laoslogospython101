@@ -13,6 +13,7 @@ pg = st.navigation(
         st.Page("pages/2_Take_Quiz.py", title="Take Quiz", icon="✏️"),
         st.Page("pages/3_Photo_Capture.py", title="Photo Capture", icon="📸"),
         st.Page("pages/4_Student_Directory.py", title="Student Directory", icon="👥"),
+        st.Page("pages/5_Asteroid_Dodge.py", title="Asteroid Dodge", icon="🚀"),
     ]
 )
 pg.run()

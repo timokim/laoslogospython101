@@ -1,0 +1,115 @@
+{
+  "title": "Day 3 — Conditions (if, else, elif)",
+  "questions": [
+    {
+      "question_text": "What values can a condition evaluate to in Python?",
+      "options": ["Yes or No", "True or False", "1 or 0 only", "On or Off"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Which operator checks if two values are equal?",
+      "options": ["=", "==", "!=", "==="],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the difference between `=` and `==`?",
+      "options": ["They are the same", "`=` assigns a value; `==` compares values", "`==` assigns; `=` compares", "Both compare values"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Which symbol means \"not equal\"?",
+      "options": ["<>", "!=", "=/=", "!!"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Fill in the blank: `if coins ___ 10:` means \"at least 10 coins\".",
+      "options": [">", "<", ">=", "=="],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What must come at the end of an `if` line in Python?",
+      "options": ["Semicolon ;", "Colon :", "Period .", "Nothing"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Why must code inside an `if` block be indented?",
+      "options": ["To look pretty", "So Python knows which lines belong to the if", "To run code faster", "Only Thonny requires it"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\ntemperature = 30\nif temperature > 25:\n    print(\"It is hot out!\")\n```",
+      "options": ["Nothing", "It is hot out!", "temperature > 25", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\ntemperature = 20\nif temperature > 25:\n    print(\"It is hot out!\")\nprint(\"Drink water\")\n```",
+      "options": ["It is hot out!", "Drink water", "Both lines", "Nothing"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "When does the `else` block run?",
+      "options": ["Always", "When the if condition is True", "When the if condition is False", "Only with elif"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nraining = False\nif raining:\n    print(\"Bring an umbrella!\")\nelse:\n    print(\"No umbrella needed.\")\n```",
+      "options": ["Bring an umbrella!", "No umbrella needed.", "False", "Nothing"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\ncoins = 15\nif coins >= 20:\n    print(\"You can buy ice-cream!\")\nelse:\n    print(\"You need to get more coins\")\n```",
+      "options": ["You can buy ice-cream!", "You need to get more coins", "15", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nscore = 45\nif score >= 50:\n    print(\"Pass\")\nelse:\n    print(\"Fail\")\n```",
+      "options": ["Pass", "Fail", "45", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does `elif` stand for?",
+      "options": ["Else forever", "Else if", "End if", "Equal if"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nscore = 70\nif score >= 85:\n    print(\"Gold Medal\")\nelif score >= 65:\n    print(\"Silver Medal\")\nelse:\n    print(\"Bronze Medal\")\n```",
+      "options": ["Gold Medal", "Silver Medal", "Bronze Medal", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nage = 10\nif age <= 12:\n    print(\"Child Ticket\")\nelif age <= 64:\n    print(\"Adult Ticket\")\nelse:\n    print(\"Senior Ticket\")\n```",
+      "options": ["Child Ticket", "Adult Ticket", "Senior Ticket", "Free Entry"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What does this print?\n\n```python\ngrade = 90\nif grade >= 90:\n    print(\"A\")\nelif grade >= 80:\n    print(\"B\")\nelif grade >= 70:\n    print(\"C\")\nelse:\n    print(\"F\")\n```",
+      "options": ["A", "B", "C", "F"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "Which fixed version runs correctly?\n\nBroken code:\n```python\nX = 3\nIf x > 2\nprint(\"x is greater than 2\"]\n```",
+      "options": [
+        "Use If with capital I and square brackets",
+        "Use lowercase if, add colon, indent print, use round parentheses",
+        "Remove the comparison operator",
+        "Change print to Print"
+      ],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nscore = 110\nif score > 100:\n    print(\"High score!\")\n```",
+      "options": ["100", "110", "High score!", "Nothing"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "Why does the order of `elif` conditions matter?",
+      "options": [
+        "It does not matter",
+        "Python stops at the first True condition and skips the rest",
+        "Python runs all elif blocks every time",
+        "Only the last elif can be True"
+      ],
+      "correct_index": 1
+    }
+  ]
+}

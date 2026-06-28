@@ -1,0 +1,135 @@
+{
+  "title": "Day 5 — Lists & for Loops",
+  "questions": [
+    {
+      "question_text": "Which brackets are used to create a list in Python?",
+      "options": ["{ }", "[ ]", "( )", "< >"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is wrong with this list?\n\n```python\nfoods = {\"Rice\", \"Fish\", \"Chicken\"}\n```",
+      "options": [
+        "Too many items",
+        "Curly braces create a set, not a list — use square brackets",
+        "Strings cannot be in lists",
+        "Missing commas"
+      ],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nfruits = [\"Mango\", \"Banana\", \"Apple\"]\nprint(fruits)\n```",
+      "options": ["Mango Banana Apple", "[\"Mango\", \"Banana\", \"Apple\"]", "Mango", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What index number does Python use for the **first** item in a list?",
+      "options": ["1", "0", "-1", "first"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nvegetables = [\"rice\", \"carrot\", \"lettuce\"]\nprint(vegetables[1])\n```",
+      "options": ["rice", "carrot", "lettuce", "1"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nfruits = [\"Mango\", \"Banana\", \"Apple\"]\nprint(fruits[2])\n```",
+      "options": ["Mango", "Banana", "Apple", "2"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What does `append()` do to a list?",
+      "options": ["Removes the last item", "Adds an item at the end", "Sorts the list", "Counts items"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nnumbers = [1, 2, 3]\nnumbers.append(7)\nprint(numbers)\n```",
+      "options": ["[1, 2, 3]", "[1, 2, 3, 7]", "[7, 1, 2, 3]", "10"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does `len()` return for a list?",
+      "options": ["The last item", "The number of items", "The first index", "The list as a string"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nnumbers = [1, 2, 3, 4]\nprint(len(numbers))\n```",
+      "options": ["4", "3", "[1, 2, 3, 4]", "10"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nfoods = [\"Rice\", \"Fish\"]\nfoods.append(\"Chicken\")\nprint(len(foods))\n```",
+      "options": ["2", "3", "5", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nmy_age = 20\nteacher_age = 30\nall_ages = [my_age, teacher_age]\nprint(all_ages)\n```",
+      "options": ["[20, 30]", "[\"my_age\", \"teacher_age\"]", "50", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "Which items can go inside a list?",
+      "options": ["Only strings", "Only numbers", "Strings, numbers, booleans, and variables", "Only booleans"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What is the basic pattern of a for loop?",
+      "options": [
+        "for list in item:",
+        "for item in list:",
+        "loop item in list:",
+        "repeat item from list:"
+      ],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nfoods = [\"Mango\", \"Banana\", \"Rice\"]\nfor x in foods:\n    print(x)\n```",
+      "options": [
+        "Mango Banana Rice",
+        "Mango\\nBanana\\nRice",
+        "[\"Mango\", \"Banana\", \"Rice\"]",
+        "Error — missing quotes"
+      ],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Why use a for loop instead of many `print()` lines?",
+      "options": [
+        "Loops always print faster on screen",
+        "It repeats code for each item automatically — less code, easier to maintain",
+        "Python requires loops for lists",
+        "print() cannot print list items"
+      ],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nclassmates = [\"Leo\", \"Vann\", \"Ari\"]\nfor friend in classmates:\n    print(\"Welcome, \" + friend + \"!\")\n```",
+      "options": [
+        "Welcome, Leo! Vann! Ari!",
+        "Welcome, Leo!\\nWelcome, Vann!\\nWelcome, Ari!",
+        "Welcome, classmates!",
+        "Error — indentation"
+      ],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What happens if you forget to indent the code inside a for loop?",
+      "options": ["It still works", "IndentationError or logic error", "The loop runs twice", "Python auto-indents"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Starting with `animal = [\"cat\"]`, which code prints `['cat', 'dog', 'bird']`?",
+      "options": [
+        "animal.append(\"dog\", \"bird\")",
+        "animal.append(\"dog\"); animal.append(\"bird\")",
+        "animal = \"dog\" + \"bird\"",
+        "print(animal[3])"
+      ],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nfoods = [\"Rice\", \"Fish\", \"Chicken\", \"Mango\", \"Banana\", \"Bread\"]\nprint(len(foods))\n```",
+      "options": ["5", "6", "21", "Error"],
+      "correct_index": 1
+    }
+  ]
+}

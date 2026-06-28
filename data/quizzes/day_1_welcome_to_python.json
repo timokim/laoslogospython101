@@ -1,0 +1,105 @@
+{
+  "title": "Day 1 — Welcome to Python",
+  "questions": [
+    {
+      "question_text": "Which function displays output on the screen in Python?",
+      "options": ["display()", "show()", "print()", "output()"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What IDE does this course use to write and run Python code?",
+      "options": ["VS Code", "Thonny", "PyCharm", "Jupyter"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this code print?\n\n```python\nprint(1 + 2)\n```",
+      "options": ["12", "3", "1+2", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What happens when you run this code?\n\n```python\nprint(1 +)\n```",
+      "options": ["Prints 1", "Prints nothing", "SyntaxError", "Prints 2"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What character starts a comment that Python ignores?",
+      "options": ["//", "#", "--", "/*"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "In what order does Python run multiple lines of code?",
+      "options": ["Random order", "Bottom to top", "Top to bottom", "Alphabetical order"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nprint(\"line 1\")\nprint(\"line 2\")\n```",
+      "options": ["line 1 line 2", "line 2\\nline 1", "line 1\\nline 2", "Error"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What is a variable?",
+      "options": ["A type of error", "A named box that stores a value", "A Python keyword only", "A comment in code"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nmyname = \"Seng\"\nprint(myname)\n```",
+      "options": ["myname", "Seng", "\"Seng\"", "NameError"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nmyname = \"Seng\"\nprint(\"myname\")\n```",
+      "options": ["Seng", "myname", "NameError", "Nothing"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What happens when this code runs?\n\n```python\nmyname = \"Seng\"\nprint(Myname)\n```",
+      "options": ["Prints Seng", "Prints Myname", "Prints myname", "NameError"],
+      "correct_index": 3
+    },
+    {
+      "question_text": "Which variable name is **NOT** valid in Python?",
+      "options": ["my_name", "name1", "1name", "myname"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "Are `myname` and `Myname` the same variable in Python?",
+      "options": ["Yes", "No — Python is case-sensitive", "Only on Windows", "Only inside print()"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nmessage = \"Hello!\"\nmessage = \"World!\"\nprint(message)\n```",
+      "options": ["Hello!", "Hello! World!", "World!", "Error"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nmessage = \"Hello!\"\nprint(message)\nmessage = \"World!\"\n```",
+      "options": ["World!", "Hello!", "Hello! World!", "Nothing"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nanimal = \"Cat\"\nanimal = \"Cow\"\nanimal = \"Horse\"\nprint(animal)\n```",
+      "options": ["Cat", "Cow", "Horse", "Cat Cow Horse"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What type of error is caused by `prin(1 + 2)`?",
+      "options": ["SyntaxError", "TypeError", "NameError", "ValueError"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "Why does `print(1 + 2` cause an error?",
+      "options": ["Missing closing parenthesis", "Wrong operator", "print is misspelled", "Numbers cannot be added"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nprint(1)\nprint(2)\n# print(3)\nprint(4)\n```",
+      "options": ["1\\n2\\n3\\n4", "1\\n2\\n4", "1\\n4", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What prints before the program crashes?\n\n```python\nprint(1)\nprint(2)\nprin(3)\nprint(4)\n```",
+      "options": ["1\\n2\\n3\\n4", "1\\n2", "Nothing", "1 only"],
+      "correct_index": 1
+    }
+  ]
+}

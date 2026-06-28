@@ -1,0 +1,120 @@
+{
+  "title": "Day 4 — Logical Operators & Type Casting",
+  "questions": [
+    {
+      "question_text": "What does the `and` operator require?",
+      "options": ["At least one condition True", "All conditions True", "No conditions True", "Exactly two conditions"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does the `or` operator require?",
+      "options": ["All conditions True", "At least one condition True", "Both conditions False", "Exactly one condition True"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does `not True` evaluate to?",
+      "options": ["True", "False", "None", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does `not False` evaluate to?",
+      "options": ["True", "False", "0", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nattendance = True\npassed_exam = True\nif attendance and passed_exam:\n    print(\"Course Completed\")\nelse:\n    print(\"Course Not Completed\")\n```",
+      "options": ["Course Completed", "Course Not Completed", "True", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nattendance = True\npassed_exam = False\nif attendance and passed_exam:\n    print(\"Course Completed\")\nelse:\n    print(\"Course Not Completed\")\n```",
+      "options": ["Course Completed", "Course Not Completed", "False", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nday = \"Saturday\"\nif day == \"Saturday\" or day == \"Sunday\":\n    print(\"Weekend\")\nelse:\n    print(\"Weekday\")\n```",
+      "options": ["Weekend", "Weekday", "Saturday", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What does this print?\n\n```python\ncash = False\ncard = True\nif cash or card:\n    print(\"Payment accepted\")\nelse:\n    print(\"Payment not accepted\")\n```",
+      "options": ["Payment accepted", "Payment not accepted", "True", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nhas_ticket = False\nif not has_ticket:\n    print(\"You cannot enter the dance.\")\nelse:\n    print(\"Welcome to the dance!\")\n```",
+      "options": ["Welcome to the dance!", "You cannot enter the dance.", "False", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nraining = True\nif not raining:\n    print(\"Go outside!\")\nelse:\n    print(\"Stay inside!\")\n```",
+      "options": ["Go outside!", "Stay inside!", "True", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Fill in the blank for a login check:\n\n```python\nif username == \"python_user\" ___ password == \"python123\":\n```",
+      "options": ["or", "and", "not", "=="],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nhomework_done = False\nif not homework_done:\n    print(\"Please complete your homework.\")\nelse:\n    print(\"Great job completing your homework!\")\n```",
+      "options": ["Great job completing your homework!", "Please complete your homework.", "False", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nx = \"10\"\ny = int(x)\nprint(y + 5)\n```",
+      "options": ["105", "15", "\"15\"", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Why does `\"I am \" + 20 + \" years old\"` cause an error?",
+      "options": ["Too many quotes", "Cannot concatenate string and integer without converting", "20 is too large", "Missing print()"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the correct fix?\n\n```python\nage = 20\nmessage = \"I am \" + age + \" years old\"\n```",
+      "options": [
+        "Use age without str()",
+        "Use str(age) to convert the number to text",
+        "Use int(age)",
+        "Remove the plus signs"
+      ],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nx = input(\"number: \")  # user types 5\ny = input(\"number: \")  # user types 3\nprint(x + y)\n```",
+      "options": ["8", "53", "15", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print (same inputs as above)?\n\n```python\nx = int(input(\"number: \"))\ny = int(input(\"number: \"))\nprint(x + y)\n```",
+      "options": ["53", "8", "35", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nis_member = False\nif not is_member:\n    print(\"You need a library card to borrow books.\")\nelse:\n    print(\"You can borrow books.\")\n```",
+      "options": ["You can borrow books.", "You need a library card to borrow books.", "False", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Age 8 should get a special ticket (under 12 OR over 65). Which condition is correct?",
+      "options": [
+        "if age < 12 and age > 65:",
+        "if age < 12 or age > 65:",
+        "if age == 12 or age == 65:",
+        "if not age:"
+      ],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What was wrong with this Day 3 review code?\n\n```python\nif score > 80\n    print(\"Gold medal\")\nelif score => 50\n```",
+      "options": [
+        "Missing colons and `=>` should be `>=`",
+        "Should use only if, no elif",
+        "score should be a string",
+        "print should be Print"
+      ],
+      "correct_index": 0
+    }
+  ]
+}

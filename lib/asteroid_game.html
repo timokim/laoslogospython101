@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; overflow: hidden; font-family: monospace; }
+  #wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px; }
+  canvas { background: #000; border: 1px solid #333; cursor: crosshair; outline: none; }
+  #hud { color: #0f0; font-size: 13px; letter-spacing: 0.5px; text-align: center; }
+  #msg { color: #fff; font-size: 13px; min-height: 18px; }
+  #overlay {
+    display: none; position: absolute; inset: 0;
+    background: rgba(0,0,0,0.85); color: #fff;
+    flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+    font-family: monospace;
+  }
+  #overlay.show { display: flex; }
+  #overlay button {
+    background: #0f0; color: #000; border: none; padding: 8px 16px;
+    font-family: monospace; font-weight: bold; cursor: pointer;
+  }
+  #newHigh { color: #0f0; font-size: 14px; display: none; }
+  #newHigh.show { display: block; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="hud">
+    SCORE: <span id="score">0</span> &nbsp;|&nbsp; HIGH: <span id="high">0</span><br>
+    SPD: __SPEED_LABEL__ &nbsp;|&nbsp; ASTEROIDS: __COUNT__
+  </div>
+  <div id="msg">Click game, then use arrow keys</div>
+  <div style="position:relative">
+    <canvas id="c" width="640" height="420" tabindex="0"></canvas>
+    <div id="overlay">
+      <div id="overTitle" style="font-size:20px;color:#0f0">GAME OVER</div>
+      <div id="overScore"></div>
+      <div id="newHigh">NEW HIGH SCORE!</div>
+      <button onclick="restart()">PLAY AGAIN</button>
+    </div>
+  </div>
+</div>
+<script>
+const SETTINGS_KEY = "__SETTINGS_KEY__";
+const STORAGE_KEY = "asteroidDodge_highscores";
+
+const cfg = {
+  spd: __SPD__,
+  n: __COUNT__,
+  r: __COUNT__ >= 14 ? 3 : 2,
+};
+
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
+const W = canvas.width, H = canvas.height;
+
+let player = { x: W/2, y: H/2, speed: 4 };
+let keys = {};
+let asteroids = [];
+let score = 0;
+let highScore = 0;
+let alive = true;
+let tick = 0;
+
+function loadAllHighScores() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch { return {}; }
+}
+
+function getHighScore(key) {
+  return loadAllHighScores()[key] || 0;
+}
+
+function saveHighScore(key, value) {
+  const all = loadAllHighScores();
+  if (value > (all[key] || 0)) {
+    all[key] = value;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+    return true;
+  }
+  return false;
+}
+
+function updateHighDisplay() {
+  document.getElementById("high").textContent = highScore;
+}
+
+function rand(min, max) { return min + Math.random() * (max - min); }
+
+function initAsteroids() {
+  asteroids = [];
+  for (let i = 0; i < cfg.n; i++) {
+    asteroids.push({
+      x: rand(20, W-20), y: rand(20, H-20),
+      vx: rand(-1,1)*cfg.spd, vy: rand(-1,1)*cfg.spd,
+      r: cfg.r
+    });
+  }
+}
+
+function drawArrow(x, y) {
+  ctx.fillStyle = "#00ff00";
+  ctx.beginPath();
+  ctx.moveTo(x, y - 7);
+  ctx.lineTo(x - 5, y + 5);
+  ctx.lineTo(x + 5, y + 5);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function hit(ax, ay, ar, px, py) {
+  const dx = ax - px, dy = ay - py;
+  return dx*dx + dy*dy < (ar + 4) * (ar + 4);
+}
+
+function update() {
+  if (!alive) return;
+  tick++;
+  if (tick % 60 === 0) score++;
+  document.getElementById("score").textContent = score;
+
+  let vx = 0, vy = 0;
+  if (keys["ArrowUp"] || keys["Up"]) vy -= 1;
+  if (keys["ArrowDown"] || keys["Down"]) vy += 1;
+  if (keys["ArrowLeft"] || keys["Left"]) vx -= 1;
+  if (keys["ArrowRight"] || keys["Right"]) vx += 1;
+  if (vx || vy) {
+    const len = Math.hypot(vx, vy) || 1;
+    player.x += (vx/len) * player.speed;
+    player.y += (vy/len) * player.speed;
+  }
+  player.x = Math.max(8, Math.min(W-8, player.x));
+  player.y = Math.max(8, Math.min(H-8, player.y));
+
+  for (const a of asteroids) {
+    a.x += a.vx; a.y += a.vy;
+    if (a.x < a.r) { a.x = a.r; a.vx *= -1; }
+    if (a.x > W - a.r) { a.x = W - a.r; a.vx *= -1; }
+    if (a.y < a.r) { a.y = a.r; a.vy *= -1; }
+    if (a.y > H - a.r) { a.y = H - a.r; a.vy *= -1; }
+    if (hit(a.x, a.y, a.r, player.x, player.y)) gameOver();
+  }
+}
+
+function draw() {
+  ctx.fillStyle = "#000000";
+  ctx.fillRect(0, 0, W, H);
+  for (const a of asteroids) {
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  drawArrow(player.x, player.y);
+}
+
+function gameOver() {
+  alive = false;
+  const isNew = saveHighScore(SETTINGS_KEY, score);
+  if (isNew) {
+    highScore = score;
+    updateHighDisplay();
+  }
+  document.getElementById("overScore").textContent =
+    "Score: " + score + " sec  |  Best: " + highScore + " sec";
+  document.getElementById("newHigh").classList.toggle("show", isNew);
+  document.getElementById("overlay").classList.add("show");
+}
+
+function restart() {
+  player.x = W/2; player.y = H/2;
+  score = 0; tick = 0; alive = true;
+  document.getElementById("score").textContent = "0";
+  document.getElementById("newHigh").classList.remove("show");
+  document.getElementById("overlay").classList.remove("show");
+  initAsteroids();
+  canvas.focus();
+}
+
+function loop() {
+  update();
+  draw();
+  requestAnimationFrame(loop);
+}
+
+window.addEventListener("keydown", e => {
+  if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","Up","Down","Left","Right"].includes(e.key)) {
+    e.preventDefault();
+    keys[e.key] = true;
+  }
+});
+window.addEventListener("keyup", e => { keys[e.key] = false; });
+canvas.addEventListener("click", () => canvas.focus());
+
+highScore = getHighScore(SETTINGS_KEY);
+updateHighDisplay();
+initAsteroids();
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

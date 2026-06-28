@@ -1,0 +1,105 @@
+{
+  "title": "Day 2 — Data Types",
+  "questions": [
+    {
+      "question_text": "What are the \"Big 3\" data types introduced on Day 2?",
+      "options": ["Lists, tuples, sets", "Strings, numbers, booleans", "Int, float, char", "Text, math, logic"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "How do you write a string in Python?",
+      "options": ["Without quotes", "With single or double quotes", "With square brackets only", "With parentheses only"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the result of `\"10\" + \"20\"`?",
+      "options": ["30", "\"1020\"", "Error", "10"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the result of `10 + 20`?",
+      "options": ["\"1020\"", "30", "Error", "\"30\""],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What happens when you run `\"Hello \" + 5`?",
+      "options": ["\"Hello 5\"", "\"Hello5\"", "TypeError", "Prints 5"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What data type does `input()` always return?",
+      "options": ["Integer", "Boolean", "String", "Float"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nname = \"Vann\"\nprint(\"Hello \" + name)\n```",
+      "options": ["Hello name", "Hello Vann", "name", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does `\"python\".upper()` return?",
+      "options": ["\"python\"", "\"PYTHON\"", "\"Python\"", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does `\"PYTHON\".lower()` return?",
+      "options": ["\"PYTHON\"", "\"python\"", "\"Python\"", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Which values are valid booleans in Python?",
+      "options": ["yes and no", "1 and 0 only", "True and False", "on and off"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nprint(10 > 1)\n```",
+      "options": ["10", "1", "True", "False"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "Why do we use `int()` with `input()` when doing math?",
+      "options": ["To make code faster", "Because input() returns a string", "To print prettier output", "Because int() removes spaces"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nage = \"20\"\nprint(int(age) + 1)\n```",
+      "options": ["201", "21", "\"21\"", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nprint(5 * 5)\n```",
+      "options": ["10", "25", "55", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nprint(10 / 2)\n```",
+      "options": ["5", "5.0", "2", "0"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does this print?\n\n```python\nmango = 5\nbanana = 10\ntotal = mango + banana\nprint(total)\n```",
+      "options": ["510", "15", "mango + banana", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Twelve candies shared equally among 3 students. What code gives the answer?",
+      "options": ["print(12 + 3)", "print(12 - 3)", "print(12 / 3)", "print(12 * 3)"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "Why does this code error?\n\n```python\nage = input(\"How old are you? \")\nprint(age + 1)\n```",
+      "options": ["input() is broken", "Cannot add string and integer", "Missing quotes", "age is undefined"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What will be printed?\n\n```python\nstudent_name = \"Vann\"\nteacher_name = \"Tim\"\nprint(student_name)\n```",
+      "options": ["Tim", "Vann", "student_name", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Why does `Print(\"Hello\")` cause an error but `print(\"Hello\")` works?",
+      "options": ["Parentheses are wrong", "Python is case-sensitive — Print is not the built-in function", "Hello must be lowercase", "Quotes are wrong"],
+      "correct_index": 1
+    }
+  ]
+}
