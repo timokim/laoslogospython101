@@ -1,0 +1,80 @@
+{
+  "title": "Day 1 - Welcome to Python Super Easy Quiz",
+  "questions": [
+    {
+      "question_text": "What does `print()` help us do?",
+      "options": ["Hide code from Python", "Show something on the screen", "Save a file", "Open Thonny"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What will this code show?\n\n```python\nprint(\"Good morning\")\n```",
+      "options": ["Good morning", "\"Good morning\"", "Nothing", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What will this code show?\n\n```python\nprint(5 + 5)\n```",
+      "options": ["5 + 5", "10", "Error", "55"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Which code has a missing closing parenthesis?",
+      "options": ["print(\"School\")", "print(\"School\"", "print(100)", "print(\"Hi\")"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Which code will cause an error because the command name is spelled wrong?",
+      "options": ["print(\"Book\")", "pront(\"Book\")", "print(100)", "print(\"Pen\")"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Python reads multiple lines of code in what order?",
+      "options": ["From bottom to top", "Randomly", "From top to bottom", "Only the last line"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What will this code show?\n\n```python\nprint(\"Red\")\nprint(\"Blue\")\n```",
+      "options": ["Red, then Blue", "Blue, then Red", "Nothing", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What symbol starts a comment in Python?",
+      "options": ["#", "@", "$", "&"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What will this code show?\n\n```python\nprint(\"Start\")\n# print(\"Middle\")\nprint(\"End\")\n```",
+      "options": ["Start, Middle, End", "Start, End", "Middle only", "Nothing"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is a variable?",
+      "options": ["A place to store a value", "A type of error", "A button in Thonny", "A comment symbol"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What will this code show?\n\n```python\ncity = \"Paris\"\nprint(city)\n```",
+      "options": ["city", "Paris", "Error", "Nothing"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What will this code show?\n\n```python\nfood = \"rice\"\nprint(\"food\")\n```",
+      "options": ["rice", "food", "Error", "Nothing"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Which variable name is OK in Python?",
+      "options": ["2student", "student_name", "student name", "\"student\""],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What will this code show?\n\n```python\ncolor = \"green\"\ncolor = \"yellow\"\nprint(color)\n```",
+      "options": ["green", "yellow", "green yellow", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What will this code show?\n\n```python\nscore = 7\nprint(score)\nscore = 9\n```",
+      "options": ["7", "9", "Nothing", "Error"],
+      "correct_index": 0
+    }
+  ]
+}

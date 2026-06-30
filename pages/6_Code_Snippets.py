@@ -19,6 +19,12 @@ SNIPPETS = [
         "blurb": "A funky fractal pattern.",
         "tip": "Use the turtle module to draw the fractal.",
     },
+    {
+        "tab": "🐢 Graphics — Growing Color Spiral",
+        "file": "growing_color_spiral.py",
+        "blurb": "A growing color spiral.",
+        "tip": "Use the turtle module to draw the spiral.",
+    },
 ]
 
 st.title("📋 Code Snippets")
