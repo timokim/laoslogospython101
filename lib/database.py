@@ -565,14 +565,23 @@ class SupabaseDatabase(Database):
         )
 
     def add_student(self, name: str, photo_bytes: bytes) -> dict[str, Any]:
+        from storage3.exceptions import StorageApiError
+
         student_id = str(uuid.uuid4())
         compressed = compress_image(photo_bytes)
         filename = f"{student_id}.jpg"
-        self.client.storage.from_(self.BUCKET).upload(
-            filename,
-            compressed,
-            {"content-type": "image/jpeg", "upsert": "true"},
-        )
+        try:
+            self.client.storage.from_(self.BUCKET).upload(
+                filename,
+                compressed,
+                file_options={"content-type": "image/jpeg"},
+            )
+        except StorageApiError as exc:
+            raise RuntimeError(
+                f"Photo upload failed: {exc}. "
+                "In Supabase, run the storage section at the bottom of supabase/schema.sql "
+                f"(creates the '{self.BUCKET}' bucket and storage policies)."
+            ) from exc
         row = (
             self.client.table("students")
             .insert({"name": name.strip(), "photo_path": filename})
@@ -617,7 +626,7 @@ def question_enabled(question: dict[str, Any]) -> bool:
 
 
 # Bump when Database methods change so hot-reload picks up new code.
-_DB_CACHE_VERSION = 2
+_DB_CACHE_VERSION = 3
 
 
 def get_database() -> Database:

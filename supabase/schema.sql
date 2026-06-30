@@ -94,7 +94,11 @@ create policy "Allow app access" on students
     for all to anon, authenticated
     using (true) with check (true);
 
--- Storage policies for bucket "student-photos" (create the bucket first in Dashboard)
+-- Storage bucket + policies (run after tables above)
+insert into storage.buckets (id, name, public)
+values ('student-photos', 'student-photos', true)
+on conflict (id) do update set public = true;
+
 drop policy if exists "Allow public read student photos" on storage.objects;
 create policy "Allow public read student photos" on storage.objects
     for select to anon, authenticated
@@ -104,3 +108,14 @@ drop policy if exists "Allow app upload student photos" on storage.objects;
 create policy "Allow app upload student photos" on storage.objects
     for insert to anon, authenticated
     with check (bucket_id = 'student-photos');
+
+drop policy if exists "Allow app update student photos" on storage.objects;
+create policy "Allow app update student photos" on storage.objects
+    for update to anon, authenticated
+    using (bucket_id = 'student-photos')
+    with check (bucket_id = 'student-photos');
+
+drop policy if exists "Allow app delete student photos" on storage.objects;
+create policy "Allow app delete student photos" on storage.objects
+    for delete to anon, authenticated
+    using (bucket_id = 'student-photos');

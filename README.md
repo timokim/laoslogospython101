@@ -35,10 +35,9 @@ Open http://localhost:8501
 ## Supabase (production)
 
 1. Create a Supabase project (pick a region near your users, e.g. Singapore)
-2. Run **`supabase/schema.sql`** in the SQL editor (tables + row-level security policies)
-3. Create a Storage bucket named `student-photos` (public read recommended for directory)
-4. Run the **storage policy** section at the bottom of `schema.sql` again if the bucket was created after step 2
-5. Add to `.streamlit/secrets.toml` (or Streamlit Cloud secrets):
+2. Run **`supabase/schema.sql`** in the SQL editor (tables, RLS, and storage bucket/policies)
+3. If you created the `student-photos` bucket manually in the Dashboard, that's fine — the SQL is idempotent
+4. Add to `.streamlit/secrets.toml` (or Streamlit Cloud secrets):
 
 ```toml
 supabase_url = "https://YOUR_PROJECT.supabase.co"

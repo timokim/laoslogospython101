@@ -26,9 +26,13 @@ photo = st.file_uploader(
 if photo and name.strip():
     st.image(photo, caption="Preview", use_container_width=True)
     if st.button("Save to directory", type="primary", use_container_width=True):
-        db.add_student(name, photo.getvalue())
-        st.success(f"Welcome to the directory, **{name.strip()}**! 🎉")
-        st.balloons()
+        try:
+            db.add_student(name, photo.getvalue())
+        except RuntimeError as exc:
+            st.error(str(exc))
+        else:
+            st.success(f"Welcome to the directory, **{name.strip()}**! 🎉")
+            st.balloons()
 elif photo and not name.strip():
     st.warning("Please enter your name first.")
 elif not photo:
