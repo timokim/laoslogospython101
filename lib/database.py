@@ -626,7 +626,7 @@ def question_enabled(question: dict[str, Any]) -> bool:
 
 
 # Bump when Database methods change so hot-reload picks up new code.
-_DB_CACHE_VERSION = 3
+_DB_CACHE_VERSION = 4
 
 
 def get_database() -> Database:
