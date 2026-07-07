@@ -1,0 +1,80 @@
+{
+  "title": "Days 2 and 3 - Super Easy Python Quiz",
+  "questions": [
+    {
+      "question_text": "Which one is a string in Python?",
+      "options": ["25", "\"apple\"", "True", "10 + 5"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\nprint(\"4\" + \"6\")\n```",
+      "options": ["10", "46", "4 + 6", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\nprint(4 + 6)\n```",
+      "options": ["10", "46", "\"10\"", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What happens when Python runs this code?\n\n```python\nprint(\"Age: \" + 12)\n```",
+      "options": ["Age: 12", "Age: ", "12", "Error"],
+      "correct_index": 3
+    },
+    {
+      "question_text": "What type of value does `input()` give back?",
+      "options": ["A string", "A number", "A boolean", "A comment"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What does `int()` help us do?",
+      "options": ["Change text like \"8\" into the number 8", "Make text uppercase", "Start a comment", "Print a value"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\ncups = \"3\"\nprint(int(cups) + 2)\n```",
+      "options": ["32", "5", "\"5\"", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\nword = \"quiet\"\nprint(word.upper())\n```",
+      "options": ["quiet", "Quiet", "QUIET", "Error"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "Which two values are booleans in Python?",
+      "options": ["yes and no", "True and False", "1 and 2", "\"true\" and \"false\""],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\nprint(9 > 3)\n```",
+      "options": ["9", "3", "True", "False"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "Which operator checks if two values are equal?",
+      "options": ["=", "==", "!=", ">"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\npoints = 12\nif points > 10:\n    print(\"Great\")\n```",
+      "options": ["Great", "points", "12", "Nothing"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What does the `else` block do?",
+      "options": ["Runs when the `if` condition is False", "Always runs first", "Stores a value", "Makes a string"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\nclean_room = False\nif clean_room:\n    print(\"Play game\")\nelse:\n    print(\"Clean first\")\n```",
+      "options": ["Play game", "Clean first", "False", "Nothing"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What does `elif` mean?",
+      "options": ["Else if", "End line if", "Equal if", "Error if"],
+      "correct_index": 0
+    }
+  ]
+}

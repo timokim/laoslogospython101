@@ -17,6 +17,7 @@ Use the sidebar to navigate:
 
 - **Instructor — Quizzes** — create, deploy, and review quiz results
 - **Take Quiz** — enter a quiz code and your name
+- **Take Midterm** — enter a midterm or final test code
 - **Photo Capture** — add your photo (best on a phone)
 - **Student Directory** — browse everyone's name and photo
 """

@@ -1,0 +1,75 @@
+{
+  "title": "Day 5 - Lists and For Loops Super Easy Quiz",
+  "questions": [
+    {
+      "question_text": "Which brackets do we use to make a list in Python?",
+      "options": ["[ ]", "{ }", "( )", "< >"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "Which one is a Python list?",
+      "options": ["colors = \"red\", \"blue\"", "colors = [\"red\", \"blue\"]", "colors = (\"red\" \"blue\")", "colors = #red #blue"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\npets = [\"dog\", \"cat\"]\nprint(pets)\n```",
+      "options": ["dog cat", "[\"dog\", \"cat\"]", "pets", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Python starts counting list indexes from what number?",
+      "options": ["0", "1", "2", "10"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\ncolors = [\"red\", \"blue\", \"green\"]\nprint(colors[0])\n```",
+      "options": ["red", "blue", "green", "0"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\ncolors = [\"red\", \"blue\", \"green\"]\nprint(colors[2])\n```",
+      "options": ["red", "blue", "green", "2"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What does `append()` do to a list?",
+      "options": ["Adds an item to the end", "Deletes the whole list", "Prints the first item", "Counts the items"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\nbooks = [\"math\", \"art\"]\nbooks.append(\"music\")\nprint(books)\n```",
+      "options": ["[\"math\", \"art\"]", "[\"music\", \"math\", \"art\"]", "[\"math\", \"art\", \"music\"]", "3"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What does `len()` tell us about a list?",
+      "options": ["How many items are in the list", "The first item in the list", "The last item in the list", "The name of the list"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\nnumbers = [8, 9, 10]\nprint(len(numbers))\n```",
+      "options": ["8", "9", "10", "3"],
+      "correct_index": 3
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\ntoys = [\"ball\"]\ntoys.append(\"kite\")\nprint(len(toys))\n```",
+      "options": ["1", "2", "ball", "kite"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "Can a list store different kinds of values, like text, numbers, and True or False?",
+      "options": ["Yes", "No", "Only text", "Only numbers"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "Which line starts a `for` loop correctly?",
+      "options": ["for item in items:", "for item items", "loop item in items:", "repeat items:"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What will this code print?\n\n```python\nnames = [\"Noy\", \"Lee\"]\nfor name in names:\n    print(name)\n```",
+      "options": ["Noy, then Lee", "Lee, then Noy", "names", "Nothing"],
+      "correct_index": 0
+    }
+  ]
+}

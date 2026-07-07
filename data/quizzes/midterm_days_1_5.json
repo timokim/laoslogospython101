@@ -1,105 +1,155 @@
 {
-  "title": "Midterm — Days 1–5",
+  "title": "Midterm Test - Days 1 to 5",
   "questions": [
     {
-      "question_text": "**Easy** — What does `print(\"Hello World\")` do?",
-      "options": ["Stores Hello World in a variable", "Displays Hello World on the screen", "Creates a comment", "Causes a SyntaxError"],
+      "question_text": "What is the output?\n\n```python\nprint(2 + 3 * 2)\n```",
+      "options": ["10", "8", "12", "Error"],
       "correct_index": 1
     },
     {
-      "question_text": "**Easy** — Which line is a valid variable assignment?",
-      "options": ["my name = \"Tim\"", "1name = \"Tim\"", "my_name = \"Tim\"", "\"my_name\" = Tim"],
+      "question_text": "What is the output?\n\n```python\nanswer = 15\nanswer + 5\n```",
+      "options": ["20", "15", "Nothing", "Error"],
       "correct_index": 2
     },
     {
-      "question_text": "**Easy** — What type does `input()` return?",
-      "options": ["Integer", "Boolean", "String", "List"],
+      "question_text": "What is the output?\n\n```python\nprint(\"Ready\"\n```",
+      "options": ["Ready", "\"Ready\"", "Nothing", "Error"],
+      "correct_index": 3
+    },
+    {
+      "question_text": "What is the output?\n\n```python\ntotal = 4\nprint(Total)\n```",
+      "options": ["4", "Total", "total", "Error"],
+      "correct_index": 3
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nprint(\"First\")\n# print(\"Second\")\nprint(\"Third\")\n```",
+      "options": ["First then Second then Third", "First then Third", "Second", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nthing = \"notebook\"\nprint(thing)\nthing = \"pencil\"\nprint(thing)\n```",
+      "options": ["notebook then pencil", "pencil then pencil", "notebook", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nprint(\"7\" + \"3\")\n```",
+      "options": ["10", "73", "\"10\"", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nprint(7 + 3)\n```",
+      "options": ["10", "73", "\"10\"", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nprint(\"Score: \" + 9)\n```",
+      "options": ["Score: 9", "Score:", "9", "Error"],
+      "correct_index": 3
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nnum = \"6\"\nprint(int(num) + 4)\n```",
+      "options": ["64", "10", "\"10\"", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nword = \"hello\"\nprint(word.upper())\n```",
+      "options": ["hello", "Hello", "HELLO", "Error"],
       "correct_index": 2
     },
     {
-      "question_text": "**Easy** — What is `\"10\" + \"20\"`?",
-      "options": ["30", "\"1020\"", "Error", "1020 without quotes"],
+      "question_text": "What is the output?\n\n```python\nprint(12 <= 12)\n```",
+      "options": ["12", "True", "False", "Error"],
       "correct_index": 1
     },
     {
-      "question_text": "**Medium** — What does this print?\n\n```python\nx = 5\nx = 10\nprint(x)\n```",
-      "options": ["5", "10", "15", "Error"],
-      "correct_index": 1
-    },
-    {
-      "question_text": "**Medium** — What does this print?\n\n```python\nname = \"Tim\"\nprint(\"Hello \" + name)\n```",
-      "options": ["Hello name", "Hello Tim", "Tim Hello", "Error"],
-      "correct_index": 1
-    },
-    {
-      "question_text": "**Medium** — What does this print?\n\n```python\nage = \"18\"\nprint(int(age) + 2)\n```",
-      "options": ["182", "20", "\"20\"", "Error"],
-      "correct_index": 1
-    },
-    {
-      "question_text": "**Medium** — What does this print?\n\n```python\nscore = 60\nif score >= 80:\n    print(\"Gold\")\nelif score >= 50:\n    print(\"Silver\")\nelse:\n    print(\"Bronze\")\n```",
-      "options": ["Gold", "Silver", "Bronze", "60"],
-      "correct_index": 1
-    },
-    {
-      "question_text": "**Medium** — What does this print?\n\n```python\nscore = 105\nif score > 100:\n    print(\"Cheating!\")\nelif score >= 80:\n    print(\"Gold\")\nelse:\n    print(\"Bronze\")\n```",
-      "options": ["Gold", "Cheating!", "Bronze", "105"],
-      "correct_index": 1
-    },
-    {
-      "question_text": "**Medium** — What does this print?\n\n```python\nhas_key = True\nhas_map = False\nif has_key and has_map:\n    print(\"Treasure!\")\nelif has_key or has_map:\n    print(\"Clue!\")\nelse:\n    print(\"Lost\")\n```",
-      "options": ["Treasure!", "Clue!", "Lost", "Error"],
-      "correct_index": 1
-    },
-    {
-      "question_text": "**Medium** — What does this print?\n\n```python\nlogged_in = False\nif not logged_in:\n    print(\"Please log in\")\nelse:\n    print(\"Welcome back\")\n```",
-      "options": ["Welcome back", "Please log in", "False", "Error"],
-      "correct_index": 1
-    },
-    {
-      "question_text": "**Medium** — What does this print?\n\n```python\nfruits = [\"Mango\", \"Banana\", \"Apple\"]\nprint(fruits[0])\n```",
-      "options": ["Banana", "Mango", "Apple", "0"],
-      "correct_index": 1
-    },
-    {
-      "question_text": "**Medium** — What does this print?\n\n```python\ncolors = [\"red\", \"blue\"]\ncolors.append(\"green\")\nprint(len(colors))\n```",
-      "options": ["2", "3", "5", "Error"],
-      "correct_index": 1
-    },
-    {
-      "question_text": "**Medium** — What does this print?\n\n```python\nnames = [\"Leo\", \"Vann\"]\nfor n in names:\n    print(n)\n```",
-      "options": ["Leo Vann", "Leo\\nVann", "[\"Leo\", \"Vann\"]", "Error"],
-      "correct_index": 1
-    },
-    {
-      "question_text": "**Hard** — What does this print?\n\n```python\nword = \"Python\"\nprint(word.lower())\n```",
-      "options": ["PYTHON", "python", "Python", "Error"],
-      "correct_index": 1
-    },
-    {
-      "question_text": "**Hard** — What happens?\n\n```python\nmyname = \"Seng\"\nprint(Myname)\n```",
-      "options": ["Prints Seng", "Prints Myname", "NameError", "SyntaxError"],
+      "question_text": "What is the output?\n\n```python\nprint(5 != 5)\n```",
+      "options": ["5", "True", "False", "Error"],
       "correct_index": 2
     },
     {
-      "question_text": "**Hard** — What does this print?\n\n```python\nage = 25\nif age < 13:\n    print(\"Child\")\nelif age < 18:\n    print(\"Teen\")\nelse:\n    print(\"Adult\")\n```",
-      "options": ["Child", "Teen", "Adult", "Error"],
-      "correct_index": 2
+      "question_text": "What is the output?\n\n```python\npoints = 18\nif points > 10:\n    print(\"Win\")\n```",
+      "options": ["Win", "points", "18", "Nothing"],
+      "correct_index": 0
     },
     {
-      "question_text": "**Hard** — Fix the output to print `I am 20 years old`:\n\n```python\nage = 20\nmessage = \"I am \" + ___ + \" years old\"\n```",
-      "options": ["age", "int(age)", "str(age)", "\"age\""],
-      "correct_index": 2
-    },
-    {
-      "question_text": "**Hard** — What does this print?\n\n```python\nnums = [10, 20, 30]\ntotal = 0\nfor n in nums:\n    total = total + n\nprint(total)\n```",
-      "options": ["30", "60", "102030", "Error"],
+      "question_text": "What is the output?\n\n```python\npoints = 3\nif points > 10:\n    print(\"Win\")\nelse:\n    print(\"Try again\")\n```",
+      "options": ["Win", "Try again", "3", "Nothing"],
       "correct_index": 1
     },
     {
-      "question_text": "**Hard** — A ticket is special if age < 12 **or** age > 65. Age is 70. What prints?\n\n```python\nage = 70\nif age < 12 or age > 65:\n    print(\"Special ticket!\")\nelse:\n    print(\"Normal ticket\")\n```",
-      "options": ["Normal ticket", "Special ticket!", "70", "Error"],
+      "question_text": "What is the output?\n\n```python\nheight = 140\nif height >= 150:\n    print(\"Tall\")\nelif height >= 120:\n    print(\"Medium\")\nelse:\n    print(\"Small\")\n```",
+      "options": ["Tall", "Medium", "Small", "Error"],
       "correct_index": 1
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nx = 5\nif x > 2\n    print(\"Big\")\n```",
+      "options": ["Big", "5", "Nothing", "Error"],
+      "correct_index": 3
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nrainy = False\nif not rainy:\n    print(\"Go outside\")\nelse:\n    print(\"Stay inside\")\n```",
+      "options": ["Go outside", "Stay inside", "False", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nhas_ticket = True\nhas_seat = False\nif has_ticket and has_seat:\n    print(\"Enter\")\nelse:\n    print(\"Wait\")\n```",
+      "options": ["Enter", "Wait", "True", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nhas_pen = True\nhas_pencil = False\nif has_pen or has_pencil:\n    print(\"Can write\")\nelse:\n    print(\"Need tool\")\n```",
+      "options": ["Can write", "Need tool", "False", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nletters = [\"a\", \"b\", \"c\"]\nprint(letters[1])\n```",
+      "options": ["a", "b", "c", "1"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nitems = [\"cup\", \"plate\"]\nitems.append(\"spoon\")\nprint(items)\n```",
+      "options": ["['cup', 'plate']", "['spoon', 'cup', 'plate']", "['cup', 'plate', 'spoon']", "3"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nnums = [4, 5, 6, 7]\nprint(len(nums))\n```",
+      "options": ["4", "7", "[4, 5, 6, 7]", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What is the output?\n\n```python\njobs = [\"read\", \"write\"]\nfor job in jobs:\n    print(job)\n```",
+      "options": ["read write", "read then write", "[\"read\", \"write\"]", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nname = \"Mina\"\nprint(\"Hi \" + name.upper())\n```",
+      "options": ["Hi Mina", "Hi MINA", "HI MINA", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the output?\n\n```python\ncount = \"2\"\nbooks = [\"math\", \"science\"]\nbooks.append(\"art\")\nprint(len(books) + int(count))\n```",
+      "options": ["5", "32", "3", "Error"],
+      "correct_index": 0
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nscores = [10, 20]\ntotal = 0\nfor score in scores:\n    total = total + score\nprint(total)\n```",
+      "options": ["10\\n20", "20", "30", "Error"],
+      "correct_index": 2
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nage = \"16\"\nif int(age) >= 18:\n    print(\"Adult\")\nelse:\n    print(\"Student\")\n```",
+      "options": ["Adult", "Student", "16", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nnames = [\"kai\", \"lin\"]\nfor name in names:\n    print(name.upper())\n```",
+      "options": ["kai then lin", "KAI then LIN", "[\"KAI\", \"LIN\"]", "Error"],
+      "correct_index": 1
+    },
+    {
+      "question_text": "What is the output?\n\n```python\nready = True\nsteps = [\"one\", \"two\"]\nif ready and len(steps) == 2:\n    print(steps[0])\nelse:\n    print(\"stop\")\n```",
+      "options": ["one", "two", "stop", "Error"],
+      "correct_index": 0
     }
   ]
 }

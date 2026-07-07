@@ -1,5 +1,7 @@
 import json
 from pathlib import Path
+from typing import Optional
+
 
 import streamlit as st
 
@@ -16,7 +18,7 @@ def _question_preview(text: str, limit: int = 55) -> str:
 
 
 def _toggle_question_enabled(
-    question_id: str, widget_key: str, manage_key: str | None = None
+    question_id: str, widget_key: str, manage_key: Optional[str] = None
 ) -> None:
     if manage_key is not None:
         st.session_state[manage_key] = True
